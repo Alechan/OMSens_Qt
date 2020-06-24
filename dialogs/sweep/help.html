@@ -1,5 +1,47 @@
 <p><strong>Multiparameter sweep</strong></p>
-<p>Launches several simulations covering all combinations of parameters values as indicated by the user. If, for example, our model has 2 parameters with the following
+
+<p><strong>Summary</strong></p>
+Launches several simulations covering all combinations of parameters values as
+indicated by the user.
+IMPORTANT: the number of combinations of parameters that can be swept without the
+deterioration of performance is of aproximately 30 combinations. If more are supplied, the
+program will take too long to generate the plots if the option for plotting upper and lower
+limits is turned on, and might even crash sometimes (this is because of the number of compare operations
+grows exponentially whith the parameters to find the upper and lower bounds with the current algorithm.
+This problem will be addressed in a following release).
+Only parameters and variables of type Real are recognized. Renamings like 'type MyType = Real' are not supported either.
+Arrays of any type are also not yet supported.
+
+<p><strong>Analyze Results Tab</strong></p>
+IMPORTANT: The user has to browse the desired set of experiments to analyze. The directory needs to be exactly the
+directory that contains the model_info.json file and the experiment_specs.json files. If any other
+directory is provided, the program will not work correctly.
+
+This tab contains the following:
+<ul>
+  <li>Parameter:run_id</li>
+  <li>Scatter Plot</li>
+  <li>Histogram Plot</li>
+  <li>Line Plots</li>
+</ul>
+
+See the documentation for more details on how to use this tool.
+
+<p><strong>Simulation</strong></p>
+Set start and end time of the simulation
+
+<p><strong>Variables</strong></p>
+Select the state variables for which a sweep analysis is desired to be made. At least one of the
+variables of the model should be selected.
+
+<p><strong>Parameters</strong></p>
+Specify for each parameter of the model, the experiment's experimental setup: the perturbation type
+can be Fixed, Sweep or None.
+
+<p><strong>Plot</strong></p>
+Allow to (optionally) show upper and lower bound curves implied by all the parameters swept.
+
+<!--<p>If our model has 2 parameters with the following
 default values, p1=10 and p2=100; and we want to perturb them as:</p>
 <ul>
    <li>p1: 2 iterations of &plusmn;5% perturbation
@@ -25,7 +67,5 @@ default values, p1=10 and p2=100; and we want to perturb them as:</p>
    <li>Simulation 5: p1 = 10.5, p2 = 100</li>
    <li>Simulation 6: p1 = 10.5, p2 = 110</li>
    <li>Simulation 7: p1 = 10, p2 = 100 (a standard unperturbed run is always included)</li>
-</ul>
-<p><strong>Known limitations</strong></p>
-<p>Only parameters and variables of type Real are recognized. Renamings like 'type MyType = Real' are not supported either.</p>
-<p>Arrays of any type are also not yet supported.</p>
+</ul>-->
+
