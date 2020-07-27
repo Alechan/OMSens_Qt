@@ -39,6 +39,7 @@ LinesPlotVisualizer::LinesPlotVisualizer(QString mPythonBinPath, QString mOMSens
 
     QDialogButtonBox *mpButtonBoxParameters = new QDialogButtonBox;
     mpButtonBoxParameters->addButton("Show", QDialogButtonBox::AcceptRole);
+    mpButtonBoxParameters->setEnabled(false);
 //    connect(mpButtonBoxParameters, &QDialogButtonBox::accepted, this, &HistogramCreator::showHistogramParameter);
     row1->addWidget(mpButtonBoxParameters);
 

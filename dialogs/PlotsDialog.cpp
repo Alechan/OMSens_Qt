@@ -28,6 +28,7 @@ PlotsDialog::PlotsDialog(QString mPythonBinPath, QString mOMSensPath, QString mO
     HistogramCreator *params2 = new HistogramCreator(mPythonBinPath, mOMSensPath, mOMSensResultsPath);
     mpParametersContainer->addTab(params2 , tr("Histogram Plot"));
 
+    // TODO: implement showing previously generated images
     LinesPlotVisualizer *params4 = new LinesPlotVisualizer(mPythonBinPath, mOMSensPath, mOMSensResultsPath);
     mpParametersContainer->addTab(params4 , tr("Line Plots"));
 
