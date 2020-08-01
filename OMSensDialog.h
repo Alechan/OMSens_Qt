@@ -89,9 +89,6 @@ private:
 signals:
 
 public slots:
-  void readOut();
-  void readErr();
-
   // RUN AND SHOW ANALYSIS
   void runIndivSensAnalysis();
   void runMultiParameterSweep();

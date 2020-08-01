@@ -272,7 +272,6 @@ bool OMSensDialog::runProcessAndShowProgress(QString scriptDirPath, QString comm
 
     // Connect command "close" with dialog close
     connect(&pythonScriptProcess, SIGNAL(finished(int)), q_progress_dialog, SLOT(close()));
-    connect(&pythonScriptProcess, SIGNAL(readyReadStandardOutput()), this, SLOT(readOut()));
     connect(q_progress_dialog, SIGNAL(canceled()), &pythonScriptProcess, SLOT(kill()));
 
     // Added
@@ -292,38 +291,21 @@ bool OMSensDialog::runProcessAndShowProgress(QString scriptDirPath, QString comm
 
     // Show output after proccess ended
     if (!processEndedCorrectly) {
+        // Get error message and prettify it
+        QString error_header           = "The python script raised the following error:";
+        QString error_header_separator = "--------------------------------------------";
         QString output_string(pythonScriptProcess.readAllStandardOutput());
-        QMessageBox msg;
-        msg.setText(output_string);
-        msg.exec();
+        QStringList error_message_list;
+        error_message_list << error_header << error_header_separator << output_string;
+        QString error_message = error_message_list.join("\n");
+
+        // Show window with error message
+        QMessageBox message_box;
+        message_box.setText(error_message);
+        message_box.exec();
     }
 
     return processEndedCorrectly;
-}
-
-void OMSensDialog::readOut()
-{
-    QString output_string(pythonScriptProcess.readAllStandardOutput());
-    int val = 0;
-    if (output_string != "") {
-        try {
-            std::string last_element = output_string.split(",").back().toStdString();
-            last_element.erase(last_element.begin(),
-                               std::find_if(last_element.begin(), last_element.end(),
-                                            std::bind1st(std::not_equal_to<char>(), ',')));
-            val = std::stoi(last_element);
-            q_progress_dialog->setValue(val);
-        } catch (int e) {
-            QMessageBox msg;
-            msg.setText("ERROR");
-            msg.exec();
-        }
-    }
-}
-
-void OMSensDialog::readErr()
-{
-
 }
 
 QString OMSensDialog::createTimestampDir(QString destFolderPath)
