@@ -11,13 +11,11 @@ If needed fix paths for the plugin interface headers files in `OMSensPlugin.h`.
 
 ### Unix
 ```bash
-$ cd /path/to/OMSens_Qt
-$ autoconf
-# OPENMODELICAHOME is usually /usr, /opt, /opt/openmodelica, or /path/to/OpenModelica/build
-$ ./configure --prefix=/path/to/OPENMODELICAHOME
+$ qmake OMSens_Qt.pro -spec linux-g++ && /usr/bin/make qmake_all
 $ make
-$ make install
 ```
+
+Open OMEdit, click on "load plugin" and open the .so shared library created by the make command.
 
 ### Windows MinGW
 - If you don't have OMDev then download it from the svn repository [here](https://openmodelica.org/svn/OpenModelicaExternal/trunk/tools/windows/OMDev).
