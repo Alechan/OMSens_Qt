@@ -93,18 +93,6 @@ OMSensDialog::OMSensDialog(Model model, QWidget *parent) : QDialog(parent), mAct
     mpVectButtonAnalysis->setEnabled(false);
     connect(mpVectButtonAnalysis, SIGNAL(clicked()), SLOT(showVectorialSensAnalysis()));
 
-    // Constrained (TODO: do connections the right way)
-    mpConstrainedButton = new QPushButton(tr("Run new"));
-    mpConstrainedButton->setAutoDefault(true);
-    mpConstrainedButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    connect(mpConstrainedButton, SIGNAL(clicked()), SLOT(runVectorialSensAnalysis()));
-    mpConstrainedButton->setEnabled(false);
-
-    mpConstrainedButtonAnalysis = new QPushButton(tr("Analyze Results"));
-    mpConstrainedButtonAnalysis->setEnabled(false);
-    connect(mpConstrainedButtonAnalysis, SIGNAL(clicked()), SLOT(showVectorialSensAnalysis()));
-
-
     // Division between features and help
     mpHorizontalLineTwo= new QFrame;
     mpHorizontalLineTwo->setFrameShape(QFrame::HLine);
@@ -150,12 +138,6 @@ OMSensDialog::OMSensDialog(Model model, QWidget *parent) : QDialog(parent), mAct
     mpLoadExperimentButton3->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
     connect(mpLoadExperimentButton3, SIGNAL(clicked()), SLOT(loadExperimentFileDialog()));
 
-    mpLoadExperimentButton4 = new QPushButton(tr("Load previous"));
-    mpLoadExperimentButton4->setAutoDefault(true);
-    mpLoadExperimentButton4->setSizePolicy(QSizePolicy::Fixed,QSizePolicy::Fixed);
-    connect(mpLoadExperimentButton4, SIGNAL(clicked()), SLOT(loadExperimentFileDialog()));
-    mpLoadExperimentButton4->setEnabled(false);
-
     // LABEL 1
     QLabel *label1 = new QLabel("Individual Parameter Based Sensitivity ");
     mainLayout->addWidget(label1, 0, Qt::AlignLeft);
@@ -182,15 +164,6 @@ OMSensDialog::OMSensDialog(Model model, QWidget *parent) : QDialog(parent), mAct
     row3->addWidget(mpVectButtonAnalysis);
     row3->addWidget(mpLoadExperimentButton3);
     mainLayout->addItem(row3);
-
-    // LABEL 4
-    QLabel *label4 = new QLabel("Constrained Interval Parameter Based Sensitivity Analysis");
-    mainLayout->addWidget(label4, 0, Qt::AlignLeft);
-    QHBoxLayout *row4 = new QHBoxLayout;
-    row4->addWidget(mpConstrainedButton);
-    row4->addWidget(mpConstrainedButtonAnalysis);
-    row4->addWidget(mpLoadExperimentButton4);
-    mainLayout->addItem(row4);
 
     // Layout settings
     mainLayout->setAlignment(Qt::AlignCenter);
